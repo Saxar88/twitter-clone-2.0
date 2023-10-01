@@ -1,7 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
 import Sidebar from "./components/sidebar/Sidebar";
+import Trending from "./components/Trending";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +27,7 @@ export default function RootLayout({
 							<div className="col-span-3 lg:col-span-2 border-x-[1px] border-neutral-800">
 								{children}
 							</div>
+							<Trending />
 						</div>
 					</div>
 				</div>
