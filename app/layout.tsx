@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import Sidebar from "./components/sidebar/Sidebar";
 import Trending from "./components/Trending";
+import LogInModal from "./components/modals/LogInModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,6 +29,7 @@ export default function RootLayout({
 								{children}
 							</div>
 							<Trending />
+							<LogInModal />
 						</div>
 					</div>
 				</div>
