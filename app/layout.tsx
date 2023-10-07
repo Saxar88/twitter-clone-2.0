@@ -2,9 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
-import Sidebar from "./components/sidebar/Sidebar";
-import Trending from "./components/Trending";
 import LogInModal from "./components/modals/LogInModal";
+import Sidebar from "./components/sidebar/Sidebar";
+import SignUpModal from "./components/modals/SignUpModal";
+import Trending from "./components/Trending";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,13 @@ export default function RootLayout({
 				<div className="h-screen bg-black">
 					<div className="container h-full max-w-6xl mx-auto xl:px-30">
 						<div className="grid grid-cols-4 h-full">
+							<SignUpModal />
+							<LogInModal />
 							<Sidebar />
 							<div className="col-span-3 lg:col-span-2 border-x-[1px] border-neutral-800">
 								{children}
 							</div>
 							<Trending />
-							<LogInModal />
 						</div>
 					</div>
 				</div>
