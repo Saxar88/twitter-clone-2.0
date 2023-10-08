@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import LogInModal from "./components/modals/LogInModal";
 import Sidebar from "./components/sidebar/Sidebar";
 import SignUpModal from "./components/modals/SignUpModal";
+import ToasterProvider from "./providers/ToasterProvider";
 import Trending from "./components/Trending";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -25,6 +26,7 @@ export default function RootLayout({
 				<div className="h-screen bg-black">
 					<div className="container h-full max-w-6xl mx-auto xl:px-30">
 						<div className="grid grid-cols-4 h-full">
+							<ToasterProvider />
 							<SignUpModal />
 							<LogInModal />
 							<Sidebar />

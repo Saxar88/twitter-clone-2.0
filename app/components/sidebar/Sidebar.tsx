@@ -1,3 +1,6 @@
+"use client";
+
+import { signOut } from "next-auth/react";
 import { BiEnvelope, BiLogOut, BiSearch } from "react-icons/bi";
 import { BsBellFill, BsBookmark, BsHouseFill } from "react-icons/bs";
 import { CiCircleMore } from "react-icons/ci";
@@ -8,8 +11,13 @@ import { RiFileList2Line } from "react-icons/ri";
 import SidebarItem from "./SidebarItem";
 import SidebarLogo from "./SidebarLogo";
 import SidebarTweetButton from "./SidebarTweetButton";
+import { SafeUser } from "@/app/types";
 
-const Sidebar = () => {
+interface SidebarProps {
+	currentUser?: SafeUser | null;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ currentUser }) => {
 	const items = [
 		{ label: "Home", href: "/", icon: BsHouseFill },
 		{ label: "Explore", href: "/explore", icon: BiSearch },
@@ -35,7 +43,13 @@ const Sidebar = () => {
 						/>
 					))}
 					<SidebarItem onClick={() => {}} icon={CiCircleMore} label="More" />
-					<SidebarItem onClick={() => {}} icon={BiLogOut} label="Logout" />
+					{currentUser && (
+						<SidebarItem
+							onClick={() => signOut()}
+							icon={BiLogOut}
+							label="Logout"
+						/>
+					)}
 					<SidebarTweetButton />
 				</div>
 			</div>

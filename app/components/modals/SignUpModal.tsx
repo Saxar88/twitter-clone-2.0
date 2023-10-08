@@ -1,6 +1,9 @@
 "use client";
 
+import axios from "axios";
+import { signIn } from "next-auth/react";
 import { useCallback, useState } from "react";
+import { toast } from "react-hot-toast";
 
 import useLogInModal from "@/app/hooks/useLogInModal";
 import useSignUpModal from "@/app/hooks/useSignUpModal";
@@ -22,13 +25,23 @@ const SignUpModal = () => {
 		try {
 			setIsLoading(true);
 
-			signUpModal.onClose();
+			axios
+				.post("/api/signup", { email, password, username, name })
+				.then(() => {
+					toast.success("Account created!");
+					signIn("credentials", { email, password });
+					signUpModal.onClose();
+				})
+				.catch((error) => {
+					toast.error("Something went wrong!");
+				})
+				.finally(() => setIsLoading(false));
 		} catch (error) {
 			console.log(error);
 		} finally {
 			setIsLoading(false);
 		}
-	}, [signUpModal]);
+	}, [email, password, username, name, signUpModal]);
 
 	const onToggle = useCallback(() => {
 		if (isLoading) return;
