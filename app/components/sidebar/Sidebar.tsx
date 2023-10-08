@@ -11,22 +11,32 @@ import { RiFileList2Line } from "react-icons/ri";
 import SidebarItem from "./SidebarItem";
 import SidebarLogo from "./SidebarLogo";
 import SidebarTweetButton from "./SidebarTweetButton";
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 
 interface SidebarProps {
-	currentUser?: SafeUser | null;
+	currentUser?: User;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ currentUser }) => {
 	const items = [
 		{ label: "Home", href: "/", icon: BsHouseFill },
 		{ label: "Explore", href: "/explore", icon: BiSearch },
-		{ label: "Notifications", href: "/notifications", icon: BsBellFill },
-		{ label: "Messages", href: "/messages", icon: BiEnvelope },
-		{ label: "Lists", href: "/123/lists", icon: RiFileList2Line },
-		{ label: "Bookmarks", href: "/bookmarks", icon: BsBookmark },
-		{ label: "Communities", href: "/communities", icon: HiOutlineUsers },
-		{ label: "Profile", href: "/users/123", icon: FaRegUser },
+		{
+			label: "Notifications",
+			href: "/notifications",
+			icon: BsBellFill,
+			auth: true,
+		},
+		{ label: "Messages", href: "/messages", icon: BiEnvelope, auth: true },
+		{ label: "Lists", href: "/123/lists", icon: RiFileList2Line, auth: true },
+		{ label: "Bookmarks", href: "/bookmarks", icon: BsBookmark, auth: true },
+		{
+			label: "Communities",
+			href: "/communities",
+			icon: HiOutlineUsers,
+			auth: true,
+		},
+		{ label: "Profile", href: "/users/123", icon: FaRegUser, auth: true },
 	];
 
 	return (

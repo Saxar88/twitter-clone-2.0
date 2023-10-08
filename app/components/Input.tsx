@@ -1,5 +1,3 @@
-import { on } from "events";
-
 interface InputProps {
 	placeholder?: string;
 	value?: string;
